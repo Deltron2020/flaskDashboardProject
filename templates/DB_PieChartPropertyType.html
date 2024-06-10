@@ -1,0 +1,136 @@
+<div class="row mb-4 justify-content-evenly mx-auto grid">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> Number of Sales </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> Total Sale Price </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="stackedChart" height="300px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var pieSales = document.getElementById("pieChart");
+
+                const pieData = {
+                  labels: [
+                      'Residential',
+                      'Vacant Land',
+                      'Commercial',
+                      'Industrial',
+                      'Agricultural',
+                      'Other'
+                  ],
+                  datasets: [{
+                    label: 'Number of Sales',
+                    data: [867, 216, 27, 10, 6, 1],
+                    backgroundColor: [
+                        '#DA8B7F',
+                        '#CECF9E',
+                        '#BECBD5',
+                        '#8D8D88',
+                        '#7B7561',
+                        '#EDEAE6'
+                    ],
+                    hoverOffset: 3,
+                      radius: '75%'
+                  }]
+                };
+
+                new Chart(pieSales, {
+                  type: 'pie',
+                  data: pieData,
+                    options: {
+                      layout: {
+                          padding: {
+                              bottom: 0,
+                              top: 0
+                          }
+                      },
+                      plugins: {
+                          legend: {
+                              labels: {
+                                  font:
+                                      {
+                                         size: 14
+                                      }
+                              },
+                              display: true,
+                              align: 'start'
+                          }
+                      }
+                    }
+                });
+
+                var barSales = document.getElementById("stackedChart");
+
+                const barData = {
+                  labels: ['Sum of Total Sale Price'],
+                  datasets: [{
+                      label: 'Residential',
+                      backgroundColor: '#DA8B7F',
+                      data: [549124800],
+                      borderWidth: 1
+                            }, {
+                                label: 'Vacant Land',
+                                backgroundColor: '#CECF9E',
+                                data: [157376800],
+                                  borderWidth: 1
+                            }, {
+                                label: 'Commercial',
+                                backgroundColor: '#BECBD5',
+                                data: [60610400],
+                                  borderWidth: 1
+                            }, {
+                                label: 'Industrial',
+                                backgroundColor: '#8D8D88',
+                                data: [5633000],
+                                  borderWidth: 1
+                            }, {
+                                label: 'Agricultural',
+                                backgroundColor: '#7B7561',
+                                data: [68905600],
+                                  borderWidth: 1
+                            }, {
+                                label: 'Other',
+                                backgroundColor: '#EDEAE6',
+                                data: [23200000],
+                                  borderWidth: 1
+                            },
+                              ]
+                };
+
+                new Chart(barSales, {
+                type: 'bar',
+                data: barData,
+                options: {
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                },
+                    responsive: true
+            });
+
+            </script>
+
+        </div>

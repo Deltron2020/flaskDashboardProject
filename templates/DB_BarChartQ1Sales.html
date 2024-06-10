@@ -1,0 +1,33 @@
+<div class="row mb-4 justify-content-evenly mx-auto grid">
+
+    <label class="text-center fw-bold fs-3">Previous 8 Years Sales Comparison</label>
+            <div class="bg-box col-12 mx-auto p-3 border border-info border-start-10 rounded-start rounded-end text-center">
+                <div>
+                  <canvas id="barChart"></canvas>
+                </div>
+
+                <script>
+                  const q1Sales = document.getElementById('barChart');
+
+                  new Chart(q1Sales, {
+                    type: 'bar',
+                    data: {
+                      labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                      datasets: [{
+                        label: 'Number of Sales',
+                        data: [1447, 1536, 1364, 1384, 1959, 1658, 1152, 1127],
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                </script>
+            </div>
+
+        </div>

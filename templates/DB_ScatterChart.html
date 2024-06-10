@@ -1,0 +1,86 @@
+<div class="row">
+
+            <div class="bg-box col-12 mt-4 mx-auto p-3 border border-info border-start-10 rounded-start rounded-end text-center">
+                <div>
+                  <canvas id="myChart5"></canvas>
+                </div>
+            </div>
+
+            <script>
+                var ctx5 = document.getElementById("myChart5");
+
+                const data3 = {
+                  datasets: [
+                    {
+                      label: 'Dataset 1',
+                        data: [{
+                                  x: -10,
+                                  y: 70
+                                }, {
+                                  x: 0,
+                                  y: 10
+                                }, {
+                                  x: -5,
+                                  y: -15
+                                }, {
+                                  x: 0.5,
+                                  y: 69
+                                }, {
+                                  x: 2,
+                                  y: 75
+                                }, {
+                                  x: 1.5,
+                                  y: -5.5
+                                }, {
+                                  x: 11.5,
+                                  y: 85
+                                }],
+                      borderColor: [
+                      'rgb(255, 99, 132)',
+                      ],
+                      backgroundColor: [
+                      'rgb(54, 162, 235)'
+                          ]
+                    },
+                    {
+                      label: 'Dataset 2',
+                      data: [{
+                                  x: 15,
+                                  y: -70
+                                }, {
+                                  x: 10,
+                                  y: -10
+                                }, {
+                                  x: 7,
+                                  y: 15
+                                }, {
+                                  x: 1.5,
+                                  y: 90
+                                }, {
+                                  x: 5,
+                                  y: 75
+                                }, {
+                                  x: 1.5,
+                                  y: -5.5
+                                }, {
+                                  x: -1.5,
+                                  y: 85
+                                }],
+                      borderColor: [
+                      'rgb(54, 162, 235)'
+                          ],
+                      backgroundColor: [
+                      '#080',
+                      ],
+                    }
+                  ]
+                };
+
+                new Chart(ctx5, {
+                  type: 'scatter',
+                  data: data3,
+                });
+
+            </script>
+
+        </div>

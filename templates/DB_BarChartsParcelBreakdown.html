@@ -1,0 +1,153 @@
+<div class="row mb-4 justify-content-evenly mx-auto grid">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3">Total Market Value By Category/Use</label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="barParcelValues" height="200px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3">Total Parcel Count By Category/Use</label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="barParcelCounts" height="200px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var pieParcelValues = document.getElementById("barParcelValues");
+
+                const pieParcelValuesData = {
+                  labels: [
+                      'Residential',
+                      'Vacant Land',
+                      'Tangible Personal Property',
+                      'Commercial',
+                      'Industrial',
+                      'Agricultural',
+                      'Other'],
+                  datasets: [{
+                        label: '(In Billions)',
+                        data: [39.3, 1.5, 3.7, 3.2, .88, 2.5, 2.02],
+                        backgroundColor: [
+                            '#DA8B7F',
+                            '#CECF9E',
+                            '#58595B',
+                            '#BECBD5',
+                            '#8D8D88',
+                            '#7B7561',
+                            '#EDEAE6'
+                        ],
+                        borderWidth: 1
+                      }]
+                };
+
+                new Chart(pieParcelValues, {
+                  type: 'bar',
+                  data: pieParcelValuesData,
+                    options: {
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        let label = context.dataset.label || '';
+
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.x !== null) {
+                                            label += new Intl.NumberFormat('en-US', {
+                                                style: 'currency',
+                                                currency: 'USD'
+                                            }).format(context.parsed.x);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                reverse: true,
+                                ticks: {
+                                    // Include a dollar sign in the ticks
+                                    callback: function(value, index, ticks) {
+                                        return '$' + value;
+                                    }
+                                }
+                            },
+                            y: {
+                                display: false
+                            }
+                        }
+                    },
+                    responsive: true
+                });
+
+
+             var barParcelCount = document.getElementById("barParcelCounts");
+
+                const barParcelCountData = {
+                  labels: [
+                      'Residential',
+                      'Vacant Land',
+                      'Tangible Personal Property',
+                      'Commercial',
+                      'Industrial',
+                      'Agricultural',
+                      'Other'],
+                  datasets: [{
+                        label: 'Parcel Count',
+                        data: [
+                                71343,
+                                11512,
+                                10918,
+                                2043,
+                                983,
+                                2048,
+                                9584],
+                        backgroundColor: [
+                            '#DA8B7F',
+                            '#CECF9E',
+                            '#58595B',
+                            '#BECBD5',
+                            '#8D8D88',
+                            '#7B7561',
+                            '#EDEAE6'
+                        ],
+                        borderWidth: 1
+                      }]
+                };
+
+                new Chart(barParcelCount, {
+                type: 'bar',
+                data: barParcelCountData,
+                options: {
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            display: false
+                        }
+                    }
+                },
+                    responsive: true
+            });
+
+
+            </script>
+
+        </div>
