@@ -1,0 +1,140 @@
+<div class="row mb-4 justify-content-evenly mx-auto grid">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> Values Breakdown Estimate </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="radarCountyValues"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> Breakdown By District </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="stackedTaxableValues" height="300px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var radarCountyValues = document.getElementById("radarCountyValues");
+
+                const radarCountyValuesData = {
+                  labels: [
+                      'Market',
+                      'Assessed',
+                      'Taxable'
+                  ],
+                  datasets: [{
+                        label: '2023 Final',
+                        data: [53487219469, 36192823370, 31689291886],
+                        backgroundColor: '#DA8B7F40',
+                        borderColor:'#DA8B7F80',
+                        borderWidth: 3,
+
+                      }, {
+                        label: '2024 Prelim Est',
+                        data: [56487744007, 39394719322, 34742484041],
+                        backgroundColor: '#7B756140',
+                        borderColor:'#7B756180',
+                        borderWidth: 3,
+
+                      }
+                  ]
+                };
+
+                new Chart(radarCountyValues, {
+                  type: 'radar',
+                  data: radarCountyValuesData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: true
+                            },
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false
+                            },
+                            r: {
+                                suggestedMin: 30000000000,
+                                suggestedMax: 50000000000,
+                                angleLines: {
+                                    color: 'black'
+                                },
+                                grid: {
+                                    circular: true
+                                },
+                                display: true,
+                                ticks: {
+                                    backdropColor: '#BECBD580',
+                                    backdropPadding: 10,
+                                    z: 0,
+                                    showLabelBackdrop: false,
+                                    color: 'black'
+                                }
+                            }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        elements: {
+                            line: {
+                                tension: 1
+                            }
+                        }
+                    },
+                });
+
+
+                var stackedTaxableValues = document.getElementById("stackedTaxableValues");
+
+                const stackedTaxableValuesData = {
+                  labels: ['Jupiter Island', 'Ocean Breeze', 'Indiantown', 'Stuart', 'Sewalls Point', 'County'],
+                  datasets: [
+                              {
+                              label: 'Taxable',
+                              backgroundColor: '#DA8B7F',
+                              data: [549, 150, 400, 223, 510, 390],
+                              borderWidth: 1
+                            }, {
+                                label: 'Assessed',
+                                backgroundColor: '#CECF9E',
+                                data: [200, 180, 110, 200, 85, 120],
+                                  borderWidth: 1
+                            }
+                              ],
+
+                };
+
+                new Chart(stackedTaxableValues, {
+                type: 'bar',
+                data: stackedTaxableValuesData,
+                options: {
+                    scales: {
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    responsive: true,
+                    indexAxis: 'y'
+                }
+            });
+
+
+            </script>
+
+        </div>
