@@ -1,0 +1,75 @@
+<div class="row mb-4 justify-content-evenly mx-auto grid">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> Application Type </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <canvas id="doughnutChart" height="550px"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                <label class="fw-bold fs-3"> By the Numbers </label>
+                <div class="bg-box chart-container p-4 border border-info border-start-10 rounded-start rounded-end text-center">
+                    <div>
+                        <h3> We received 3,491 total homestead applications in 2023! </h3>
+                        <br>
+                        <p><a href="https://www.pa.martin.fl.us/images/stories/files/handouts/MCPA_Homestead-Exemption.pdf" target = "_blank">
+                        <img src="/static/hx.png" alt="Homstead Info" width="350px" height="475px" class="rounded mx-auto">
+                        </a></p>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var doughApps = document.getElementById("doughnutChart");
+
+                const doughAppsData = {
+                  labels: [
+                      'Mail-In',
+                      'Online',
+                      'Walk In'
+                  ],
+                  datasets: [{
+                    label: 'Applications By Type',
+                    data: [66, 1195, 2230],
+                    backgroundColor: [
+                        '#DA8B7F',
+                        '#CECF9E',
+                        '#BECBD5'
+                    ],
+                    hoverOffset: 3,
+                      radius: '90%'
+                  }]
+                };
+
+                new Chart(doughApps, {
+                  type: 'doughnut',
+                  data: doughAppsData,
+                    options: {
+                      layout: {
+                          padding: {
+                              bottom: 0,
+                              top: 0
+                          }
+                      },
+                      plugins: {
+                          legend: {
+                              labels: {
+                                  font:
+                                      {
+                                         size: 14
+                                      }
+                              },
+                              display: true,
+                              align: 'start'
+                          }
+                      }
+                    }
+                });
+
+            </script>
+
+        </div>
